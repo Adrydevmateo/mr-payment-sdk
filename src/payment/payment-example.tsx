@@ -153,17 +153,16 @@ const PaymentExample: React.FC = () => {
         placeholder: "NY"
       }
     },
-    country: {
-      container: "mb-4",
-      label: {
-        text: "Country",
-        styles: "block text-sm font-medium text-gray-700 mb-1"
-      },
-      input: {
-        styles: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-        placeholder: "US"
-      }
-    },
+         country: {
+       container: "mb-4",
+       label: {
+         text: "Country",
+         styles: "block text-sm font-medium text-gray-700 mb-1"
+       },
+       input: {
+         styles: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+       }
+     },
     region: {
       container: "mb-4",
       label: {

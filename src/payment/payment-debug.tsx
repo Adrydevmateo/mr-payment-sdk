@@ -85,7 +85,7 @@ const PaymentDebug: React.FC = () => {
   "amount": "5",
   "city": "Limassol",
   "state": "Cyprus",
-  "country": "CY",
+  "country": "US",
   "region": "Cyprus",
   "zip_code": "3041",
   "address": "104 greeko st",
@@ -127,8 +127,9 @@ const PaymentDebug: React.FC = () => {
         <ol className="text-yellow-700 space-y-1 text-sm">
           <li>1. Fill in the payment form with the test data</li>
           <li>2. Use test card: 4412397212080000, Exp: 03/2027, CVC: 003</li>
-          <li>3. Submit the form and check the console for the actual API request</li>
-          <li>4. Verify that all required properties are included</li>
+          <li>3. Select country from dropdown (ISO codes will be sent: US, GB, DE, etc.)</li>
+          <li>4. Submit the form and check the console for the actual API request</li>
+          <li>5. Verify that all required properties are included</li>
         </ol>
       </div>
     </div>

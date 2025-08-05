@@ -320,6 +320,13 @@ fields: {
 2. **Configure Merchant**: Set up your merchant identifier and webhook URLs
 3. **Test Integration**: Use the provided test card details for testing
 
+### Important Notes
+
+- **Country Codes**: The country field uses ISO 3166-1 alpha-2 country codes (e.g., "US" for United States, "GB" for United Kingdom, "DE" for Germany, "DO" for Dominican Republic)
+- **All Countries Included**: Complete list of 195+ countries with proper ISO codes, sorted alphabetically by first letter of country names
+- **Currency**: Supported currencies include USD, EUR, GBP, CAD, AUD
+- **IP Address**: Client IP is automatically detected and included in the request
+
 ### Test Card Details
 
 - **Card Number**: 4412397212080000
