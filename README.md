@@ -1,15 +1,15 @@
 # MR Payment SDK
 
-A headless React payment SDK built with TypeScript and Vite. This SDK provides flexible, unstyled payment components that you can customize with your own styling and integrate into any React application.
+A headless React payment SDK built with TypeScript and Vite. This SDK provides flexible, unstyled payment components that you can customize with your own styling and integrate into any React application. Now with **BlockChanger API integration** for real payment processing!
 
 ## Installation
 
 ```bash
-npm install @mrpayment/sdk
+npm install mr-payment-sdk
 # or
-yarn add @mrpayment/sdk
+yarn add mr-payment-sdk
 # or
-pnpm add @mrpayment/sdk
+pnpm add mr-payment-sdk
 ```
 
 ## Peer Dependencies
@@ -20,37 +20,73 @@ This SDK requires React 19.1.0 or higher. Make sure you have the following peer 
 npm install react react-dom
 ```
 
-## Usage
+## Quick Start
 
-### Import Components
+### Basic Payment Form
 
 ```tsx
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from 'mr-payment-sdk';
 
 function App() {
   const handlePaymentSubmit = () => {
-    // Handle payment processing logic here
     console.log('Payment submitted');
   };
 
   return (
-    <div>
-      <Payment
-        submit={{
-          action: handlePaymentSubmit,
-          text: "Process Payment"
-        }}
-      />
-    </div>
+    <Payment
+      submit={{
+        action: handlePaymentSubmit,
+        text: "Process Payment"
+      }}
+    />
+  );
+}
+```
+
+### BlockChanger Payment Integration
+
+```tsx
+import { PaymentForm } from 'mr-payment-sdk';
+
+function App() {
+  const paymentConfig = {
+    sessionToken: 'your_session_token',
+    applicationKey: 'your_application_key',
+    baseUrl: 'https://dev1.blockchanger.io'
+  };
+
+  const handleSuccess = (response) => {
+    console.log('Payment successful:', response);
+  };
+
+  const handleError = (error) => {
+    console.error('Payment failed:', error);
+  };
+
+  return (
+    <PaymentForm
+      config={paymentConfig}
+      merchantIdentifier="your_merchant_id"
+      redirectUrl="https://your-site.com/success"
+      postbackUrl="https://your-site.com/webhook"
+      amount="10.00"
+      currency="USD"
+      onSuccess={handleSuccess}
+      onError={handleError}
+      submit={{
+        text: "Pay $10.00",
+        styles: "bg-blue-600 text-white px-4 py-2 rounded"
+      }}
+    />
   );
 }
 ```
 
 ## Components
 
-### Payment
+### Payment (Basic)
 
-A headless payment form component with customizable fields and styling.
+A simple headless payment form component with customizable fields and styling.
 
 #### Props
 
@@ -61,9 +97,119 @@ A headless payment form component with customizable fields and styling.
 | `submit` | `SubmitConfig` | `{}` | Configuration for submit button |
 | `...props` | `HTMLFormAttributes` | - | All standard form HTML attributes |
 
-#### Field Configuration
+### PaymentForm (BlockChanger Integration)
 
-Each field can be configured with:
+A comprehensive payment form component with full BlockChanger API integration, including all required fields for payment processing.
+
+#### Props
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `config` | `PaymentConfig` | ✅ | BlockChanger API configuration |
+| `merchantIdentifier` | `string` | ✅ | Your merchant identifier |
+| `redirectUrl` | `string` | ✅ | URL to redirect after payment |
+| `postbackUrl` | `string` | ✅ | Webhook URL for payment notifications |
+| `amount` | `string` | ❌ | Payment amount (defaults to form input) |
+| `currency` | `string` | ❌ | Payment currency (defaults to USD) |
+| `description` | `string` | ❌ | Payment description |
+| `descriptor` | `string` | ❌ | Payment descriptor |
+| `onSuccess` | `(response: PaymentResponse) => void` | ❌ | Success callback |
+| `onError` | `(error: string) => void` | ❌ | Error callback |
+| `onLoading` | `(loading: boolean) => void` | ❌ | Loading state callback |
+| `fields` | `PaymentFormFields` | ❌ | Field customization |
+| `submit` | `SubmitConfig` | ❌ | Submit button configuration |
+
+#### PaymentConfig
+
+```typescript
+interface PaymentConfig {
+  sessionToken: string;      // Your BlockChanger session token
+  applicationKey: string;    // Your BlockChanger application key
+  baseUrl?: string;          // API base URL (defaults to dev1.blockchanger.io)
+}
+```
+
+#### PaymentResponse
+
+```typescript
+interface PaymentResponse {
+  success: boolean;
+  transaction_id?: string;
+  status?: string;
+  message?: string;
+  error?: string;
+  redirect_url?: string;
+}
+```
+
+## API Functions
+
+### createPayment
+
+Process a payment through the BlockChanger API.
+
+```typescript
+import { createPayment, PaymentRequest, PaymentConfig } from 'mr-payment-sdk';
+
+const paymentData: PaymentRequest = {
+  merchant_identifier: "mid-A144-U1697-wWxxob29NxcEgdXUFGbhQMtjwkDgPK",
+  currency: "USD",
+  ccn: "4412397212080000",
+  exp_month: "03",
+  exp_year: "2027",
+  cvc_code: "003",
+  email: "demo@gmail.com",
+  phone_number: "13059995184",
+  ip: "87.228.193.251",
+  first_name: "dan",
+  last_name: "lorans",
+  amount: "5",
+  city: "Limassol",
+  state: "Cyprus",
+  country: "CY",
+  region: "Cyprus",
+  zip_code: "3041",
+  address: "104 greeko st",
+  redirect_url: "https://demo.io/",
+  postback_url: "https://webhook.site/aa54561b-7dc4-4c14-8f09-ee9959f9e1a6",
+  description: "Description Customer",
+  descriptor: "Some Payment"
+};
+
+const config: PaymentConfig = {
+  sessionToken: 'admin_MO687031821sdd1MAWKcwQkOSl',
+  applicationKey: 'app_144s9ypK9XoDwHC9rWavGFzpprQhHvMjOEKGP'
+};
+
+const response = await createPayment(paymentData, config);
+```
+
+### validatePaymentData
+
+Validate payment data before submission.
+
+```typescript
+import { validatePaymentData } from 'mr-payment-sdk';
+
+const validation = validatePaymentData(paymentData);
+if (!validation.isValid) {
+  console.error('Validation errors:', validation.errors);
+}
+```
+
+### getClientIP
+
+Get the client's IP address for payment processing.
+
+```typescript
+import { getClientIP } from 'mr-payment-sdk';
+
+const clientIP = await getClientIP();
+```
+
+## Field Configuration
+
+### Basic Payment Fields
 
 ```tsx
 fields: {
@@ -82,40 +228,57 @@ fields: {
 }
 ```
 
-#### Submit Configuration
+### PaymentForm Fields
 
 ```tsx
-submit: {
-  action?: () => void;        // Function called on form submission
-  text?: string;              // Button text
-  styles?: string;            // CSS classes for submit button
+fields: {
+  // Personal Information
+  firstName?: FieldConfig;
+  lastName?: FieldConfig;
+  email?: FieldConfig;
+  phoneNumber?: FieldConfig;
+  
+  // Payment Information
+  cardNumber?: FieldConfig;
+  expiryMonth?: FieldConfig;
+  expiryYear?: FieldConfig;
+  cvc?: FieldConfig;
+  
+  // Billing Address
+  address?: FieldConfig;
+  city?: FieldConfig;
+  state?: FieldConfig;
+  country?: FieldConfig;
+  region?: FieldConfig;
+  zipCode?: FieldConfig;
+  
+  // Payment Details
+  amount?: FieldConfig;
+  currency?: FieldConfig;
 }
 ```
 
-#### Examples
+## Examples
+
+### Basic Usage with Default Styling
 
 ```tsx
-// Basic usage with default styling
 <Payment />
+```
 
-// Custom styling with Tailwind CSS
-<Payment
-  container="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md"
+### Custom Styling with Tailwind CSS
+
+```tsx
+<PaymentForm
+  config={paymentConfig}
+  merchantIdentifier="your_merchant_id"
+  redirectUrl="https://your-site.com/success"
+  postbackUrl="https://your-site.com/webhook"
   fields={{
-    email: {
+    firstName: {
       container: "mb-4",
       label: {
-        text: "Email Address",
-        styles: "block text-sm font-medium text-gray-700 mb-1"
-      },
-      input: {
-        styles: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      }
-    },
-    password: {
-      container: "mb-4",
-      label: {
-        text: "Password",
+        text: "First Name",
         styles: "block text-sm font-medium text-gray-700 mb-1"
       },
       input: {
@@ -124,27 +287,64 @@ submit: {
     }
   }}
   submit={{
-    action: () => console.log('Payment processed'),
     text: "Pay Now",
-    styles: "w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    styles: "w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
   }}
 />
+```
 
-// Minimal styling for custom design system
-<Payment
+### Minimal Styling for Custom Design System
+
+```tsx
+<PaymentForm
+  config={paymentConfig}
+  merchantIdentifier="your_merchant_id"
+  redirectUrl="https://your-site.com/success"
+  postbackUrl="https://your-site.com/webhook"
   fields={{
-    email: {
-      label: { text: "Email" }
-    },
-    password: {
-      label: { text: "Password" }
-    }
+    firstName: { label: { text: "First Name" } },
+    lastName: { label: { text: "Last Name" } },
+    email: { label: { text: "Email" } }
   }}
   submit={{
-    action: handlePayment,
     text: "Submit Payment"
   }}
 />
+```
+
+## BlockChanger Integration
+
+### Setup
+
+1. **Get API Credentials**: Contact BlockChanger to get your session token and application key
+2. **Configure Merchant**: Set up your merchant identifier and webhook URLs
+3. **Test Integration**: Use the provided test card details for testing
+
+### Test Card Details
+
+- **Card Number**: 4412397212080000
+- **Expiry**: 03/2027
+- **CVC**: 003
+
+### Webhook Handling
+
+Set up your postback URL to handle payment notifications:
+
+```typescript
+// Example webhook handler
+app.post('/webhook', (req, res) => {
+  const { transaction_id, status, amount, currency } = req.body;
+  
+  if (status === 'approved') {
+    // Process successful payment
+    console.log(`Payment ${transaction_id} approved for ${amount} ${currency}`);
+  } else {
+    // Handle failed payment
+    console.log(`Payment ${transaction_id} failed`);
+  }
+  
+  res.status(200).send('OK');
+});
 ```
 
 ## Development
