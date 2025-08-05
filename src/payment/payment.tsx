@@ -1,7 +1,13 @@
 import React, { useId } from "react";
+import type { PaymentConfig } from "./payment-api";
 
 export interface PaymentProps extends React.HTMLAttributes<HTMLFormElement> {
 	container?: string;
+	// Payment configuration
+	config?: PaymentConfig;
+	merchantIdentifier?: string;
+	// Validation callbacks
+	onConfigError?: (errors: string[]) => void;
 	fields?: {
 		email?: {
 			container?: string;
@@ -44,6 +50,50 @@ export interface PaymentProps extends React.HTMLAttributes<HTMLFormElement> {
 const Payment = React.forwardRef<HTMLFormElement, PaymentProps>(
 	(props, ref) => {
 		const formId = useId();
+		
+		// Validate payment configuration only if config is provided
+		const validateConfig = () => {
+			const errors: string[] = [];
+			
+			// Only validate if config is provided (optional validation)
+			if (props.config) {
+				if (!props.config.applicationKey) {
+					errors.push('Application Key is required');
+				}
+				
+				if (!props.config.sessionToken) {
+					errors.push('Session Token is required');
+				}
+			}
+			
+			// Only validate merchantIdentifier if config is provided
+			if (props.config && (!props.merchantIdentifier || props.merchantIdentifier.trim() === '')) {
+				errors.push('Merchant ID is required');
+			}
+			
+			return errors;
+		};
+		
+		// Check for configuration errors
+		const configErrors = validateConfig();
+		
+		// If there are configuration errors, show them
+		if (configErrors.length > 0) {
+			// Call the error callback if provided
+			props.onConfigError?.(configErrors);
+			
+			// Return error display
+			return (
+				<div className="payment-config-error" style={{ color: 'red', padding: '1rem', border: '1px solid red', borderRadius: '4px', backgroundColor: '#fef2f2' }}>
+					<strong>Configuration Error:</strong>
+					<ul style={{ margin: '0.5rem 0 0 1.5rem', padding: 0 }}>
+						{configErrors.map((error, index) => (
+							<li key={`config-error-${error.substring(0, 10)}-${index}`}>{error}</li>
+						))}
+					</ul>
+				</div>
+			);
+		}
 		
 		const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 			e.preventDefault();

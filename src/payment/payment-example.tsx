@@ -28,9 +28,18 @@ const PaymentExample: React.FC = () => {
   // Example configuration - replace with your actual credentials
   const paymentConfig = {
     sessionToken: 'admin_MO687031821sdd1MAWKcwQkOSl',
-    applicationKey: 'app_144s9ypK9XoDwHC9rWavGFzpprQhHvMjOEKGP',
+    applicationKey: 'app_144s9ypK9XoDwHC9rWavGFzpprQhHvMjOEKGP', // Required
     baseUrl: 'https://dev1.blockchanger.io'
   };
+
+  // Merchant ID - Required for payment processing
+  const merchantIdentifier = "mid-A144-U1697-wWxxob29NxcEgdXUFGbhQMtjwkDgPK";
+
+  // Validate required configuration
+  const isConfigValid = paymentConfig.applicationKey && 
+    paymentConfig.sessionToken && 
+    merchantIdentifier && 
+    merchantIdentifier.trim() !== '';
 
   // Example styling with Tailwind CSS
   const formFields: PaymentFormProps['fields'] = {
@@ -208,6 +217,18 @@ const PaymentExample: React.FC = () => {
     }
   };
 
+  if (!isConfigValid) {
+    return (
+      <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">Payment Example</h1>
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+          <strong className="font-bold">Configuration Error:</strong>
+          <span className="block sm:inline"> Application Key, Session Token, and Merchant ID are required for payment processing.</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold text-gray-900 mb-6">Payment Example</h1>
@@ -242,7 +263,7 @@ const PaymentExample: React.FC = () => {
 
              <PaymentForm
          config={paymentConfig}
-         merchantIdentifier="mid-A144-U1697-wWxxob29NxcEgdXUFGbhQMtjwkDgPK"
+         merchantIdentifier={merchantIdentifier}
          redirectUrl="https://demo.io/"
          postbackUrl="https://webhook.site/aa54561b-7dc4-4c14-8f09-ee9959f9e1a6"
          amount="5.00"

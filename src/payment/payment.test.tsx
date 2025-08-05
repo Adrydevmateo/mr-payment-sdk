@@ -71,4 +71,104 @@ describe('Payment Component', () => {
     const emailInput = screen.getByLabelText('Email');
     expect(emailInput).toHaveClass('custom-input-class');
   });
+
+  it('shows configuration error when applicationKey is missing', () => {
+    const mockOnConfigError = vi.fn();
+    
+    render(
+      <Payment
+        config={{
+          sessionToken: 'test_session_token',
+          // applicationKey missing
+        }}
+        merchantIdentifier="test_merchant_id"
+        onConfigError={mockOnConfigError}
+      />
+    );
+    
+    expect(screen.getByText('Application Key is required')).toBeInTheDocument();
+    expect(mockOnConfigError).toHaveBeenCalledWith(['Application Key is required']);
+  });
+
+  it('shows configuration error when sessionToken is missing', () => {
+    const mockOnConfigError = vi.fn();
+    
+    render(
+      <Payment
+        config={{
+          applicationKey: 'test_application_key',
+          // sessionToken missing
+        }}
+        merchantIdentifier="test_merchant_id"
+        onConfigError={mockOnConfigError}
+      />
+    );
+    
+    expect(screen.getByText('Session Token is required')).toBeInTheDocument();
+    expect(mockOnConfigError).toHaveBeenCalledWith(['Session Token is required']);
+  });
+
+  it('shows configuration error when merchantIdentifier is missing', () => {
+    const mockOnConfigError = vi.fn();
+    
+    render(
+      <Payment
+        config={{
+          sessionToken: 'test_session_token',
+          applicationKey: 'test_application_key',
+        }}
+        merchantIdentifier="" // Empty merchantIdentifier
+        onConfigError={mockOnConfigError}
+      />
+    );
+    
+    expect(screen.getByText('Merchant ID is required')).toBeInTheDocument();
+    expect(mockOnConfigError).toHaveBeenCalledWith(['Merchant ID is required']);
+  });
+
+  it('shows multiple configuration errors when multiple fields are missing', () => {
+    const mockOnConfigError = vi.fn();
+    
+    render(
+      <Payment
+        config={{
+          // Both applicationKey and sessionToken missing
+        }}
+        // merchantIdentifier also missing
+        onConfigError={mockOnConfigError}
+      />
+    );
+    
+    expect(screen.getByText('Application Key is required')).toBeInTheDocument();
+    expect(screen.getByText('Session Token is required')).toBeInTheDocument();
+    expect(screen.getByText('Merchant ID is required')).toBeInTheDocument();
+    expect(mockOnConfigError).toHaveBeenCalledWith([
+      'Application Key is required',
+      'Session Token is required',
+      'Merchant ID is required'
+    ]);
+  });
+
+  it('renders form normally when all configuration is valid', () => {
+    render(
+      <Payment
+        config={{
+          sessionToken: 'test_session_token',
+          applicationKey: 'test_application_key',
+        }}
+        merchantIdentifier="test_merchant_id"
+      />
+    );
+    
+    // Should render the form normally, not show configuration errors
+    expect(screen.getByLabelText('Email')).toBeInTheDocument();
+    expect(screen.getByLabelText('Password')).toBeInTheDocument();
+    expect(screen.getByLabelText('Confirm Password')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Submit' })).toBeInTheDocument();
+    
+    // Should not show any configuration errors
+    expect(screen.queryByText('Application Key is required')).not.toBeInTheDocument();
+    expect(screen.queryByText('Session Token is required')).not.toBeInTheDocument();
+    expect(screen.queryByText('Merchant ID is required')).not.toBeInTheDocument();
+  });
 }); 

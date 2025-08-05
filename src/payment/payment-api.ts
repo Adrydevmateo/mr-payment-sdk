@@ -37,7 +37,7 @@ export interface PaymentResponse {
 
 export interface PaymentConfig {
   sessionToken: string;
-  applicationKey: string;
+  applicationKey: string; // Required
   baseUrl?: string;
 }
 
@@ -47,6 +47,23 @@ export async function createPayment(
   config: PaymentConfig
 ): Promise<PaymentResponse> {
   try {
+    // Validate required configuration
+    if (!config.applicationKey) {
+      return {
+        success: false,
+        error: 'Application key is required',
+        status: 'error',
+      };
+    }
+
+    if (!config.sessionToken) {
+      return {
+        success: false,
+        error: 'Session token is required',
+        status: 'error',
+      };
+    }
+
     const baseUrl = config.baseUrl || 'https://dev1.blockchanger.io';
     
     const response = await fetch(`${baseUrl}/acquiring_payment`, {
@@ -94,7 +111,7 @@ export function validatePaymentData(data: Partial<PaymentRequest>): {
 } {
   const errors: string[] = [];
   const requiredFields = [
-    'merchant_identifier',
+    'merchant_identifier', // This is the merchantId
     'currency',
     'ccn',
     'exp_month',
@@ -122,6 +139,11 @@ export function validatePaymentData(data: Partial<PaymentRequest>): {
     if (!data[field as keyof PaymentRequest]) {
       errors.push(`${field} is required`);
     }
+  }
+
+  // Specific validation for merchant_identifier (merchantId)
+  if (!data.merchant_identifier || data.merchant_identifier.trim() === '') {
+    errors.push('Merchant ID is required');
   }
 
   // Email validation

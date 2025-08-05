@@ -90,12 +90,59 @@ describe('PaymentForm Component', () => {
     expect(screen.getByRole('button', { name: 'Custom Pay Button' })).toBeInTheDocument();
   });
 
+  it('shows configuration error when required props are missing', () => {
+    // Test with missing applicationKey
+    const { rerender } = render(
+      <PaymentForm
+        config={{
+          sessionToken: 'test_session_token',
+          // applicationKey missing
+        }}
+        merchantIdentifier="test_merchant_id"
+        redirectUrl="https://example.com/success"
+        postbackUrl="https://example.com/webhook"
+      />
+    );
+    
+    expect(screen.getByText('Application Key is required')).toBeInTheDocument();
+    
+    // Test with missing sessionToken
+    rerender(
+      <PaymentForm
+        config={{
+          applicationKey: 'test_application_key',
+          // sessionToken missing
+        }}
+        merchantIdentifier="test_merchant_id"
+        redirectUrl="https://example.com/success"
+        postbackUrl="https://example.com/webhook"
+      />
+    );
+    
+    expect(screen.getByText('Session Token is required')).toBeInTheDocument();
+    
+    // Test with missing merchantIdentifier
+    rerender(
+      <PaymentForm
+        config={{
+          sessionToken: 'test_session_token',
+          applicationKey: 'test_application_key',
+        }}
+        merchantIdentifier="" // Empty merchantIdentifier
+        redirectUrl="https://example.com/success"
+        postbackUrl="https://example.com/webhook"
+      />
+    );
+    
+    expect(screen.getByText('Merchant ID is required')).toBeInTheDocument();
+  });
+
   it('displays validation errors when form is submitted with invalid data', async () => {
     const { createPayment, validatePaymentData } = await import('./payment-api');
     
     vi.mocked(validatePaymentData).mockReturnValue({
       isValid: false,
-      errors: ['Email is required', 'Card number is invalid'],
+      errors: ['Invalid email format', 'Invalid credit card number'],
     });
     
     vi.mocked(createPayment).mockResolvedValue({
@@ -106,16 +153,29 @@ describe('PaymentForm Component', () => {
 
     render(<PaymentForm {...defaultProps} />);
     
-    // Fill in some fields but leave others empty to trigger validation
+    // Fill in all required fields but with invalid values to trigger validation
     fireEvent.change(screen.getByLabelText('First Name'), { target: { value: 'John' } });
     fireEvent.change(screen.getByLabelText('Last Name'), { target: { value: 'Doe' } });
+    fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'invalid-email' } });
+    fireEvent.change(screen.getByLabelText('Phone Number'), { target: { value: '1234567890' } });
+    fireEvent.change(screen.getByLabelText('Card Number'), { target: { value: 'invalid-card' } });
+    fireEvent.change(screen.getByLabelText('Month'), { target: { value: '12' } });
+    fireEvent.change(screen.getByLabelText('Year'), { target: { value: '2027' } });
+    fireEvent.change(screen.getByLabelText('CVC'), { target: { value: '123' } });
+    fireEvent.change(screen.getByLabelText('Address'), { target: { value: '123 Main St' } });
+    fireEvent.change(screen.getByLabelText('City'), { target: { value: 'New York' } });
+    fireEvent.change(screen.getByLabelText('State'), { target: { value: 'NY' } });
+    fireEvent.change(screen.getByLabelText('Country'), { target: { value: 'US' } });
+    fireEvent.change(screen.getByLabelText('Region'), { target: { value: 'North America' } });
+    fireEvent.change(screen.getByLabelText('ZIP Code'), { target: { value: '10001' } });
+    fireEvent.change(screen.getByLabelText('Amount'), { target: { value: '10.00' } });
     
     const submitButton = screen.getByRole('button', { name: 'Pay Now' });
     fireEvent.click(submitButton);
     
     await waitFor(() => {
-      expect(screen.getByText('Email is required')).toBeInTheDocument();
-      expect(screen.getByText('Card number is invalid')).toBeInTheDocument();
+      expect(screen.getByText('Invalid email format')).toBeInTheDocument();
+      expect(screen.getByText('Invalid credit card number')).toBeInTheDocument();
     });
   });
 
@@ -148,6 +208,8 @@ describe('PaymentForm Component', () => {
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'john@example.com' } });
     fireEvent.change(screen.getByLabelText('Phone Number'), { target: { value: '1234567890' } });
     fireEvent.change(screen.getByLabelText('Card Number'), { target: { value: '4111111111111111' } });
+    fireEvent.change(screen.getByLabelText('Month'), { target: { value: '12' } });
+    fireEvent.change(screen.getByLabelText('Year'), { target: { value: '2027' } });
     fireEvent.change(screen.getByLabelText('CVC'), { target: { value: '123' } });
     fireEvent.change(screen.getByLabelText('Address'), { target: { value: '123 Main St' } });
     fireEvent.change(screen.getByLabelText('City'), { target: { value: 'New York' } });
@@ -198,6 +260,8 @@ describe('PaymentForm Component', () => {
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'john@example.com' } });
     fireEvent.change(screen.getByLabelText('Phone Number'), { target: { value: '1234567890' } });
     fireEvent.change(screen.getByLabelText('Card Number'), { target: { value: '4111111111111111' } });
+    fireEvent.change(screen.getByLabelText('Month'), { target: { value: '12' } });
+    fireEvent.change(screen.getByLabelText('Year'), { target: { value: '2027' } });
     fireEvent.change(screen.getByLabelText('CVC'), { target: { value: '123' } });
     fireEvent.change(screen.getByLabelText('Address'), { target: { value: '123 Main St' } });
     fireEvent.change(screen.getByLabelText('City'), { target: { value: 'New York' } });
@@ -249,6 +313,8 @@ describe('PaymentForm Component', () => {
     fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'john@example.com' } });
     fireEvent.change(screen.getByLabelText('Phone Number'), { target: { value: '1234567890' } });
     fireEvent.change(screen.getByLabelText('Card Number'), { target: { value: '4111111111111111' } });
+    fireEvent.change(screen.getByLabelText('Month'), { target: { value: '12' } });
+    fireEvent.change(screen.getByLabelText('Year'), { target: { value: '2027' } });
     fireEvent.change(screen.getByLabelText('CVC'), { target: { value: '123' } });
     fireEvent.change(screen.getByLabelText('Address'), { target: { value: '123 Main St' } });
     fireEvent.change(screen.getByLabelText('City'), { target: { value: 'New York' } });

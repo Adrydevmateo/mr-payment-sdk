@@ -127,6 +127,25 @@ const PaymentForm = React.forwardRef<HTMLFormElement, PaymentFormProps>(
       props.onLoading?.(true);
 
       try {
+        // Validate required configuration
+        if (!props.config.applicationKey) {
+          setErrors(['Application key is required']);
+          props.onError?.('Application key is required');
+          return;
+        }
+
+        if (!props.config.sessionToken) {
+          setErrors(['Session token is required']);
+          props.onError?.('Session token is required');
+          return;
+        }
+
+        if (!props.merchantIdentifier || props.merchantIdentifier.trim() === '') {
+          setErrors(['Merchant ID is required']);
+          props.onError?.('Merchant ID is required');
+          return;
+        }
+
         // Get client IP
         const clientIP = await getClientIP();
         const paymentData: PaymentRequest = {

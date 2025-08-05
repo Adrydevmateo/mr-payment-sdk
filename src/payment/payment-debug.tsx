@@ -8,9 +8,18 @@ const PaymentDebug: React.FC = () => {
 
   const paymentConfig: PaymentConfig = {
     sessionToken: 'admin_MO687031821sdd1MAWKcwQkOSl',
-    applicationKey: 'app_144s9ypK9XoDwHC9rWavGFzpprQhHvMjOEKGP',
+    applicationKey: 'app_144s9ypK9XoDwHC9rWavGFzpprQhHvMjOEKGP', // Required
     baseUrl: 'https://dev1.blockchanger.io'
   };
+
+  // Merchant ID - Required for payment processing
+  const merchantIdentifier = "mid-A144-U1697-wWxxob29NxcEgdXUFGbhQMtjwkDgPK";
+
+  // Validate required configuration
+  const isConfigValid = paymentConfig.applicationKey && 
+    paymentConfig.sessionToken && 
+    merchantIdentifier && 
+    merchantIdentifier.trim() !== '';
 
   const handlePaymentSuccess = (paymentResponse: PaymentResponse) => {
     console.log('Payment successful:', paymentResponse);
@@ -31,6 +40,18 @@ const PaymentDebug: React.FC = () => {
     setPaymentData(formData);
   };
 
+  if (!isConfigValid) {
+    return (
+      <div className="max-w-4xl mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-6">Payment Debug - BlockChanger API</h1>
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+          <strong className="font-bold">Configuration Error:</strong>
+          <span className="block sm:inline"> Application Key, Session Token, and Merchant ID are required for payment processing.</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Payment Debug - BlockChanger API</h1>
@@ -41,7 +62,7 @@ const PaymentDebug: React.FC = () => {
           <h2 className="text-xl font-semibold mb-4">Payment Form</h2>
           <PaymentForm
             config={paymentConfig}
-            merchantIdentifier="mid-A144-U1697-wWxxob29NxcEgdXUFGbhQMtjwkDgPK"
+            merchantIdentifier={merchantIdentifier}
             redirectUrl="https://demo.io/"
             postbackUrl="https://webhook.site/aa54561b-7dc4-4c14-8f09-ee9959f9e1a6"
             amount="5.00"

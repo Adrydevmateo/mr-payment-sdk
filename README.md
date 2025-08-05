@@ -54,8 +54,8 @@ import { PaymentForm } from 'mr-payment-sdk';
 
 function App() {
   const paymentConfig = {
-    sessionToken: 'your_session_token',
-    applicationKey: 'your_application_key',
+    sessionToken: 'your_session_token', // Required
+    applicationKey: 'your_application_key', // Required
     baseUrl: 'https://dev1.blockchanger.io'
   };
 
@@ -70,7 +70,7 @@ function App() {
   return (
     <PaymentForm
       config={paymentConfig}
-      merchantIdentifier="your_merchant_id"
+      merchantIdentifier="your_merchant_id" // Required
       redirectUrl="https://your-site.com/success"
       postbackUrl="https://your-site.com/webhook"
       amount="10.00"
@@ -103,8 +103,8 @@ function App() {
   });
 
   const paymentConfig = {
-    sessionToken: 'your_session_token',
-    applicationKey: 'your_application_key',
+    sessionToken: 'your_session_token', // Required
+    applicationKey: 'your_application_key', // Required
     baseUrl: 'https://dev1.blockchanger.io'
   };
 
@@ -123,7 +123,7 @@ function App() {
   return (
     <PaymentForm
       config={paymentConfig}
-      merchantIdentifier="your_merchant_id"
+      merchantIdentifier="your_merchant_id" // Required
       redirectUrl="https://your-site.com/success"
       postbackUrl="https://your-site.com/webhook"
       amount="10.00"
@@ -197,9 +197,9 @@ A comprehensive payment form component with full BlockChanger API integration, i
 
 ```typescript
 interface PaymentConfig {
-  sessionToken: string;      // Your BlockChanger session token
-  applicationKey: string;    // Your BlockChanger application key
-  baseUrl?: string;          // API base URL (defaults to dev1.blockchanger.io)
+  sessionToken: string;      // Required: Your BlockChanger session token
+  applicationKey: string;    // Required: Your BlockChanger application key
+  baseUrl?: string;          // Optional: API base URL (defaults to dev1.blockchanger.io)
 }
 ```
 
