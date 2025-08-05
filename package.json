@@ -21,9 +21,26 @@
     "sdk",
     "headless",
     "typescript",
-    "vite"
+    "vite",
+    "form",
+    "components",
+    "ui",
+    "accessibility"
   ],
   "description": "A headless React payment SDK built with TypeScript and Vite",
+  "author": "Adrydevmateo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adrydevmateo/mr-payment-sdk.git"
+  },
+  "homepage": "https://github.com/Adrydevmateo/mr-payment-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/Adrydevmateo/mr-payment-sdk/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -38,7 +55,8 @@
     "version:minor": "npm version minor",
     "version:major": "npm version major",
     "types": "tsc -p tsconfig.types.json",
-    "postbuild": "pnpm types && cp -R dist/types/* dist/ && cp dist/index.d.ts dist/mrpayment-sdk.d.ts"
+    "postbuild": "pnpm types && cp dist/types/index.d.ts dist/mrpayment-sdk.d.ts && mkdir -p dist/payment && cp dist/types/payment/payment.d.ts dist/payment/ && rm -rf dist/types && rm -f dist/App.d.ts dist/main.d.ts dist/test.d.ts dist/*.d.ts.map dist/payment/*.d.ts.map dist/vite.svg",
+    "prepublishOnly": "npm run build && npm run test"
   },
   "dependencies": {
     "@types/node": "24.0.11"

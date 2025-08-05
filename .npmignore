@@ -14,6 +14,7 @@ vitest.shims.d.ts
 node_modules/
 pnpm-lock.yaml
 pnpm-workspace.yaml
+bun.lock
 
 # Build artifacts (except dist)
 *.log
@@ -41,6 +42,7 @@ coverage/
 *.spec.js
 *.spec.ts
 *.spec.tsx
+test/
 
 # Development server files
 index.html
@@ -49,4 +51,18 @@ public/
 # Documentation (except README)
 docs/
 *.md
-!README.md 
+!README.md
+
+# Demo files
+App.tsx
+App.d.ts
+main.tsx
+main.d.ts
+test.ts
+test.d.ts
+
+# TypeScript source maps
+*.d.ts.map
+
+# NPM configuration
+.npmrc 
