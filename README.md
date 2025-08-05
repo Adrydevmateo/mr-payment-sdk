@@ -1,6 +1,6 @@
 # MR Payment Headless
 
-A headless React payment SDK built with TypeScript and Vite. This SDK provides flexible, unstyled payment components that you can customize with your own styling and integrate into any React application. Now with **BlockChanger API integration** for real payment processing!
+A headless React payment HEADLESS built with TypeScript and Vite. This HEADLESS provides flexible, unstyled payment components that you can customize with your own styling and integrate into any React application. Now with **BlockChanger API integration** for real payment processing!
 
 ## Installation
 
@@ -14,7 +14,7 @@ pnpm add mr-payment-headless
 
 ## Peer Dependencies
 
-This SDK requires React 19.1.0 or higher. Make sure you have the following peer dependencies installed:
+This HEADLESS requires React 19.1.0 or higher. Make sure you have the following peer dependencies installed:
 
 ```bash
 npm install react react-dom
@@ -446,7 +446,7 @@ app.post('/webhook', (req, res) => {
 ### Available Scripts
 
 - `pnpm dev` - Start development server
-- `pnpm build` - Build the SDK for production
+- `pnpm build` - Build the HEADLESS for production
 - `pnpm lint` - Run ESLint
 - `pnpm test` - Run tests
 
@@ -457,13 +457,13 @@ pnpm build
 ```
 
 This will create the following files in the `dist` directory:
-- `mrpayment-sdk.es.js` - ES module bundle
-- `mrpayment-sdk.umd.js` - UMD bundle
-- `mrpayment-sdk.d.ts` - TypeScript declarations
+- `mrpayment-headless.es.js` - ES module bundle
+- `mrpayment-headless.umd.js` - UMD bundle
+- `mrpayment-headless.d.ts` - TypeScript declarations
 
 ## Testing
 
-The SDK includes comprehensive tests for all components:
+The HEADLESS includes comprehensive tests for all components:
 
 ```bash
 pnpm test
@@ -474,7 +474,7 @@ pnpm test
 To publish a new version:
 
 1. Update the version in `package.json`
-2. Build the SDK: `pnpm build`
+2. Build the HEADLESS: `pnpm build`
 3. Publish to npm: `npm publish`
 
 ## Contributing

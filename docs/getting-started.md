@@ -1,6 +1,6 @@
 # Getting Started
 
-This comprehensive guide will walk you through setting up, running, and publishing the MR Payment SDK.
+This comprehensive guide will walk you through setting up, running, and publishing the MR Payment HEADLESS.
 
 ## Table of Contents
 
@@ -49,8 +49,8 @@ If you plan to publish the package:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-org/mr-payment-sdk.git
-cd mr-payment-sdk
+git clone https://github.com/your-org/mr-payment-headless.git
+cd mr-payment-headless
 ```
 
 ### 2. Install Dependencies
@@ -151,7 +151,7 @@ Tests are located in `src/**/*.test.tsx` files:
 ```tsx
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 
 describe('Payment Component', () => {
   it('renders payment form', () => {
@@ -171,9 +171,9 @@ pnpm build
 
 This creates optimized bundles in the `dist/` directory:
 
-- `mrpayment-sdk.es.js` - ES module bundle
-- `mrpayment-sdk.umd.js` - UMD bundle
-- `mrpayment-sdk.d.ts` - TypeScript declarations
+- `mrpayment-headless.es.js` - ES module bundle
+- `mrpayment-headless.umd.js` - UMD bundle
+- `mrpayment-headless.d.ts` - TypeScript declarations
 
 ### Build Verification
 
@@ -187,7 +187,7 @@ ls -la dist/
 du -h dist/*.js
 
 # Test the built package
-node -e "console.log(require('./dist/mrpayment-sdk.umd.js'))"
+node -e "console.log(require('./dist/mrpayment-headless.umd.js'))"
 ```
 
 ### Build Commands
@@ -268,10 +268,10 @@ pnpm publish:private
 
 ```bash
 # Check published package
-npm view @mrpayment/sdk
+npm view @mrpayment/headless
 
 # Install and test in a new project
-npm install @mrpayment/sdk
+npm install @mrpayment/headless
 ```
 
 ### Publishing Scripts
@@ -391,7 +391,7 @@ npm whoami
 pnpm version:patch
 
 # Or unpublish (within 72 hours)
-npm unpublish @mrpayment/sdk@1.0.0
+npm unpublish @mrpayment/headless@1.0.0
 ```
 
 **Problem**: Permission errors
@@ -438,6 +438,6 @@ After getting started:
 ## Support
 
 - 📚 [Documentation](./README.md)
-- 🐛 [Report Issues](https://github.com/your-org/mr-payment-sdk/issues)
-- 💬 [Discussions](https://github.com/your-org/mr-payment-sdk/discussions)
+- 🐛 [Report Issues](https://github.com/your-org/mr-payment-headless/issues)
+- 💬 [Discussions](https://github.com/your-org/mr-payment-headless/discussions)
 - 📧 [Contact Team](mailto:team@mrpayment.com) 

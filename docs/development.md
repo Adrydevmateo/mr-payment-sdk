@@ -1,6 +1,6 @@
 # Development Setup
 
-This guide explains how to set up the MR Payment SDK for local development, including running the development server, testing, and building the project.
+This guide explains how to set up the MR Payment HEADLESS for local development, including running the development server, testing, and building the project.
 
 ## Prerequisites
 
@@ -15,8 +15,8 @@ Before you begin development, ensure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-org/mr-payment-sdk.git
-cd mr-payment-sdk
+git clone https://github.com/your-org/mr-payment-headless.git
+cd mr-payment-headless
 ```
 
 ### 2. Install Dependencies
@@ -37,7 +37,7 @@ pnpm list
 
 ### Running the Development Server
 
-Start the development server to see the SDK in action:
+Start the development server to see the HEADLESS in action:
 
 ```bash
 pnpm dev
@@ -87,16 +87,16 @@ pnpm lint
 
 ### Building
 
-Build the SDK for production:
+Build the HEADLESS for production:
 
 ```bash
 pnpm build
 ```
 
 This creates:
-- `dist/mrpayment-sdk.es.js` - ES module bundle
-- `dist/mrpayment-sdk.umd.js` - UMD bundle
-- `dist/mrpayment-sdk.d.ts` - TypeScript declarations
+- `dist/mrpayment-headless.es.js` - ES module bundle
+- `dist/mrpayment-headless.umd.js` - UMD bundle
+- `dist/mrpayment-headless.d.ts` - TypeScript declarations
 
 ### Type Generation
 
@@ -109,14 +109,14 @@ pnpm types
 ## Project Structure
 
 ```
-mr-payment-sdk/
+mr-payment-headless/
 ├── src/
 │   ├── payment/
 │   │   ├── payment.tsx          # Main payment component
 │   │   └── payment.test.tsx     # Component tests
 │   ├── test/
 │   │   └── setup.ts            # Test configuration
-│   ├── index.ts                # SDK exports
+│   ├── index.ts                # HEADLESS exports
 │   ├── App.tsx                 # Demo application
 │   └── main.tsx               # Entry point
 ├── docs/                       # Documentation
@@ -177,7 +177,7 @@ Before committing:
 
 ### Vite Configuration (`vite.config.ts`)
 
-- Builds the SDK as a library
+- Builds the HEADLESS as a library
 - Generates ES modules and UMD bundles
 - Excludes React and React DOM from the bundle
 - Generates TypeScript declarations

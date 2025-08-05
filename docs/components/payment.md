@@ -1,6 +1,6 @@
 # Payment Component
 
-The `Payment` component is the core component of MR Payment SDK. It provides a headless payment form that you can fully customize with your own styling and integrate with any payment processing system.
+The `Payment` component is the core component of MR Payment HEADLESS. It provides a headless payment form that you can fully customize with your own styling and integrate with any payment processing system.
 
 ## Overview
 
@@ -9,7 +9,7 @@ The Payment component renders a form with email, password, and confirm password 
 ## Basic Usage
 
 ```tsx
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 
 function MyPaymentForm() {
   const handlePaymentSubmit = () => {
@@ -209,7 +209,7 @@ For custom validation, you can:
 ### With Payment Processor
 
 ```tsx
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 import { processPayment } from './payment-service';
 
 function PaymentForm() {
@@ -241,7 +241,7 @@ function PaymentForm() {
 ### With Form State Management
 
 ```tsx
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 import { useState } from 'react';
 
 function PaymentForm() {

@@ -1,6 +1,6 @@
 # Product Roadmap PRD
 
-**Product**: MR Payment SDK  
+**Product**: MR Payment HEADLESS  
 **Version**: 1.0  
 **Date**: January 2024  
 **Status**: Approved  
@@ -8,10 +8,10 @@
 ## 📋 Roadmap Overview
 
 ### Vision Statement
-To become the leading headless payment SDK for React developers, providing comprehensive, flexible, and accessible payment components that enable developers to build world-class payment experiences.
+To become the leading headless payment HEADLESS for React developers, providing comprehensive, flexible, and accessible payment components that enable developers to build world-class payment experiences.
 
 ### Strategic Goals
-1. **Market Leadership**: Establish MR Payment SDK as the go-to solution for headless payment components
+1. **Market Leadership**: Establish MR Payment HEADLESS as the go-to solution for headless payment components
 2. **Developer Adoption**: Achieve 100,000+ NPM downloads within 2 years
 3. **Enterprise Success**: Secure 50+ enterprise customers
 4. **Community Growth**: Build an active community of 1,000+ contributors
@@ -246,7 +246,7 @@ To become the leading headless payment SDK for React developers, providing compr
 - **Enterprise Customers**: 20+ enterprise customers by end of 2024
 - **Revenue**: $100K+ annual recurring revenue
 - **Customer Satisfaction**: 4.5+ rating on developer surveys
-- **Market Share**: Top 3 headless payment SDK
+- **Market Share**: Top 3 headless payment HEADLESS
 
 ## 🔄 Release Strategy
 
@@ -283,7 +283,7 @@ To become the leading headless payment SDK for React developers, providing compr
 5. **Performance**: Lightweight and optimized
 
 ### Market Positioning
-- **Primary**: Headless payment SDK for React developers
+- **Primary**: Headless payment HEADLESS for React developers
 - **Secondary**: Accessible, performant payment components
 - **Tertiary**: TypeScript-first developer experience
 

@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to MR Payment SDK will be documented in this file.
+All notable changes to MR Payment HEADLESS will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial release of MR Payment SDK
+- Initial release of MR Payment HEADLESS
 - Payment component with customizable fields
 - TypeScript support with full type definitions
 - Headless design with no built-in styling
@@ -16,10 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Accessibility features (proper labels, unique IDs, keyboard navigation)
 
 ### Changed
-- Restructured project from UI library to headless payment SDK
+- Restructured project from UI library to headless payment HEADLESS
 - Removed UI components (Button, Link, Table)
 - Removed Storybook dependencies and configuration
-- Updated package name to `@mrpayment/sdk`
+- Updated package name to `@mrpayment/headless`
 
 ### Fixed
 - Fixed `useId()` hook usage in Payment component
@@ -71,7 +71,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Version History
 
 ### Version 0.0.x (Initial Development)
-- Project restructuring from UI library to payment SDK
+- Project restructuring from UI library to payment HEADLESS
 - Core component development
 - Build system setup
 - Testing infrastructure
@@ -95,14 +95,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Migration Guides
 
-### From UI Library to Payment SDK
+### From UI Library to Payment HEADLESS
 
 If you were using the previous UI library version:
 
 1. **Update Package Name**:
    ```bash
    npm uninstall @mrpayment/mrpayment
-   npm install @mrpayment/sdk
+   npm install @mrpayment/headless
    ```
 
 2. **Update Imports**:
@@ -111,7 +111,7 @@ If you were using the previous UI library version:
    import { Button, Link } from '@mrpayment/mrpayment';
    
    // New
-   import { Payment } from '@mrpayment/sdk';
+   import { Payment } from '@mrpayment/headless';
    ```
 
 3. **Remove UI Components**: The Button, Link, and Table components have been removed. Use the Payment component instead.
@@ -158,5 +158,5 @@ When contributing to this project, please:
 For questions about version changes or migration:
 
 - 📚 Check the [Documentation](./README.md)
-- 🐛 Report issues on [GitHub](https://github.com/your-org/mr-payment-sdk/issues)
-- 💬 Ask questions in [Discussions](https://github.com/your-org/mr-payment-sdk/discussions) 
+- 🐛 Report issues on [GitHub](https://github.com/your-org/mr-payment-headless/issues)
+- 💬 Ask questions in [Discussions](https://github.com/your-org/mr-payment-headless/discussions) 

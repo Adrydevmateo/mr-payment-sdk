@@ -18,7 +18,7 @@
   "keywords": [
     "react",
     "payment",
-    "sdk",
+    "headless",
     "headless",
     "typescript",
     "vite",
@@ -27,7 +27,7 @@
     "ui",
     "accessibility"
   ],
-  "description": "A headless React payment SDK built with TypeScript and Vite",
+  "description": "A headless React payment HEADLESS built with TypeScript and Vite",
   "author": "Adrydevmateo",
   "license": "MIT",
   "repository": {

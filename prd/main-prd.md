@@ -1,6 +1,6 @@
 # Main Product Requirements Document (PRD)
 
-**Product**: MR Payment SDK  
+**Product**: MR Payment HEADLESS  
 **Version**: 1.0  
 **Date**: January 2024  
 **Status**: Approved  
@@ -8,7 +8,7 @@
 ## 📋 Executive Summary
 
 ### Product Vision
-MR Payment SDK is a headless React component library designed to provide developers with flexible, customizable payment form components that integrate seamlessly with any React application while maintaining full control over styling and user experience.
+MR Payment HEADLESS is a headless React component library designed to provide developers with flexible, customizable payment form components that integrate seamlessly with any React application while maintaining full control over styling and user experience.
 
 ### Problem Statement
 Developers building payment forms face several challenges:
@@ -19,7 +19,7 @@ Developers building payment forms face several challenges:
 - Performance overhead from unnecessary styling and features
 
 ### Solution
-A headless React SDK that provides:
+A headless React HEADLESS that provides:
 - Unstyled, fully customizable payment components
 - Excellent TypeScript support and developer experience
 - Built-in accessibility features
@@ -194,7 +194,7 @@ A headless React SDK that provides:
 - **Tree Shaking**: Support for unused code elimination
 
 ### Security Requirements
-- **No Data Storage**: SDK doesn't store sensitive data
+- **No Data Storage**: HEADLESS doesn't store sensitive data
 - **Secure by Default**: Follow security best practices
 - **Input Validation**: Support for input validation
 - **HTTPS Only**: Support for secure connections

@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get up and running with MR Payment SDK in under 5 minutes.
+Get up and running with MR Payment HEADLESS in under 5 minutes.
 
 ## Prerequisites
 
@@ -10,10 +10,10 @@ Get up and running with MR Payment SDK in under 5 minutes.
 
 ## Installation
 
-Install the SDK in your React project:
+Install the HEADLESS in your React project:
 
 ```bash
-npm install @mrpayment/sdk
+npm install @mrpayment/headless
 ```
 
 ## Basic Usage
@@ -21,7 +21,7 @@ npm install @mrpayment/sdk
 ### 1. Import the Component
 
 ```tsx
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 ```
 
 ### 2. Create a Payment Form
@@ -90,7 +90,7 @@ Here's a complete working example:
 
 ```tsx
 import React, { useState } from 'react';
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 
 function PaymentApp() {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -183,5 +183,5 @@ export default PaymentApp;
 ## Need Help?
 
 - 📚 Browse the [full documentation](./README.md)
-- 🐛 Report issues on [GitHub](https://github.com/your-org/mr-payment-sdk/issues)
-- 💬 Ask questions in [Discussions](https://github.com/your-org/mr-payment-sdk/discussions) 
+- 🐛 Report issues on [GitHub](https://github.com/your-org/mr-payment-headless/issues)
+- 💬 Ask questions in [Discussions](https://github.com/your-org/mr-payment-headless/discussions) 

@@ -1,11 +1,11 @@
 # Publishing Guide
 
-This guide explains how to publish the MR Payment SDK to npm.
+This guide explains how to publish the MR Payment HEADLESS to npm.
 
 ## Prerequisites
 
 1. **NPM Account**: Ensure you have an npm account and are logged in
-2. **Package Name**: The package name `mr-payment-sdk` is available
+2. **Package Name**: The package name `mr-payment-headless` is available
 3. **Build**: All tests pass and the build is successful
 
 ## Publishing Steps
@@ -53,10 +53,10 @@ pnpm publish:private
 
 ```bash
 # Check the published package
-npm view mr-payment-sdk
+npm view mr-payment-headless
 
 # Install and test the published package
-npm install mr-payment-sdk
+npm install mr-payment-headless
 ```
 
 ## Package Contents
@@ -64,9 +64,9 @@ npm install mr-payment-sdk
 The published package includes:
 - `README.md` - Documentation
 - `package.json` - Package metadata
-- `dist/mrpayment-sdk.es.js` - ES module bundle
-- `dist/mrpayment-sdk.umd.js` - UMD bundle
-- `dist/mrpayment-sdk.d.ts` - TypeScript declarations
+- `dist/mrpayment-headless.es.js` - ES module bundle
+- `dist/mrpayment-headless.umd.js` - UMD bundle
+- `dist/mrpayment-headless.d.ts` - TypeScript declarations
 - `dist/payment/payment.d.ts` - Component type declarations
 
 ## Configuration Files

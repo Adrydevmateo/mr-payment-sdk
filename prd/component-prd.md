@@ -1,6 +1,6 @@
 # Component Product Requirements Document (PRD)
 
-**Product**: MR Payment SDK Components  
+**Product**: MR Payment HEADLESS Components  
 **Version**: 1.0  
 **Date**: January 2024  
 **Status**: Approved  
@@ -8,7 +8,7 @@
 ## 📋 Component Overview
 
 ### Component Philosophy
-Each component in the MR Payment SDK follows the headless design pattern, providing unstyled, accessible React components that developers can fully customize. Components are designed to be composable, performant, and developer-friendly.
+Each component in the MR Payment HEADLESS follows the headless design pattern, providing unstyled, accessible React components that developers can fully customize. Components are designed to be composable, performant, and developer-friendly.
 
 ### Design Principles
 1. **Headless First**: No built-in styling, complete customization control
@@ -22,7 +22,7 @@ Each component in the MR Payment SDK follows the headless design pattern, provid
 ### 1. Payment Component
 
 #### Overview
-The Payment component is the core component of the SDK, providing a customizable payment form with email, password, and confirm password fields.
+The Payment component is the core component of the HEADLESS, providing a customizable payment form with email, password, and confirm password fields.
 
 #### Functional Requirements
 

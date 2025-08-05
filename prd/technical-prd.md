@@ -1,6 +1,6 @@
 # Technical Product Requirements Document (PRD)
 
-**Product**: MR Payment SDK  
+**Product**: MR Payment HEADLESS  
 **Version**: 1.0  
 **Date**: January 2024  
 **Status**: Approved  
@@ -8,7 +8,7 @@
 ## 📋 Technical Overview
 
 ### Architecture Philosophy
-The MR Payment SDK follows a headless architecture pattern, providing unstyled, accessible React components that developers can fully customize. The architecture emphasizes performance, type safety, and developer experience.
+The MR Payment HEADLESS follows a headless architecture pattern, providing unstyled, accessible React components that developers can fully customize. The architecture emphasizes performance, type safety, and developer experience.
 
 ### Core Principles
 1. **Headless Design**: No built-in styling, complete customization control
@@ -23,7 +23,7 @@ The MR Payment SDK follows a headless architecture pattern, providing unstyled, 
 
 ```mermaid
 graph TB
-    A[React Application] --> B[MR Payment SDK]
+    A[React Application] --> B[MR Payment HEADLESS]
     B --> C[Payment Component]
     C --> D[Field Components]
     C --> E[Validation Logic]
@@ -115,9 +115,9 @@ src/
 ### Build Output
 ```
 dist/
-├── mrpayment-sdk.es.js          # ES module bundle
-├── mrpayment-sdk.umd.js         # UMD bundle
-├── mrpayment-sdk.d.ts           # Main type declarations
+├── mrpayment-headless.es.js          # ES module bundle
+├── mrpayment-headless.umd.js         # UMD bundle
+├── mrpayment-headless.d.ts           # Main type declarations
 ├── payment/
 │   └── payment.d.ts             # Component types
 └── types/                       # Detailed type declarations
@@ -129,17 +129,17 @@ dist/
 ### Package.json Configuration
 ```json
 {
-  "name": "@mrpayment/sdk",
+  "name": "@mrpayment/headless",
   "version": "0.0.1",
   "type": "module",
-  "main": "dist/mrpayment-sdk.umd.js",
-  "module": "dist/mrpayment-sdk.es.js",
-  "types": "dist/mrpayment-sdk.d.ts",
+  "main": "dist/mrpayment-headless.umd.js",
+  "module": "dist/mrpayment-headless.es.js",
+  "types": "dist/mrpayment-headless.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/mrpayment-sdk.d.ts",
-      "import": "./dist/mrpayment-sdk.es.js",
-      "require": "./dist/mrpayment-sdk.umd.js"
+      "types": "./dist/mrpayment-headless.d.ts",
+      "import": "./dist/mrpayment-headless.es.js",
+      "require": "./dist/mrpayment-headless.umd.js"
     }
   }
 }
@@ -222,9 +222,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "mrpayment-sdk",
+      name: "mrpayment-headless",
       formats: ["es", "umd"],
-      fileName: (format) => `mrpayment-sdk.${format}.js`,
+      fileName: (format) => `mrpayment-headless.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],
@@ -351,7 +351,7 @@ describe('Payment Component', () => {
 ## 🔒 Security Specifications
 
 ### Security Principles
-- **No Data Storage**: SDK doesn't store sensitive data
+- **No Data Storage**: HEADLESS doesn't store sensitive data
 - **Input Validation**: Support for input validation
 - **Secure by Default**: Follow security best practices
 - **HTTPS Only**: Support for secure connections

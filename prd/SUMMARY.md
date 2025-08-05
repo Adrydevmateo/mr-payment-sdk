@@ -1,6 +1,6 @@
-# PRD Summary - MR Payment SDK
+# PRD Summary - MR Payment HEADLESS
 
-This document provides a comprehensive overview of all Product Requirements Documents (PRDs) for the MR Payment SDK project and how they work together to guide product development.
+This document provides a comprehensive overview of all Product Requirements Documents (PRDs) for the MR Payment HEADLESS project and how they work together to guide product development.
 
 ## 📋 PRD Overview
 
@@ -17,7 +17,7 @@ The PRD collection is organized into six main documents, each focusing on differ
 ## 🎯 Product Vision Summary
 
 ### Core Mission
-To provide developers with a flexible, headless React payment SDK that enables rapid development of custom payment forms while maintaining full control over styling and user experience.
+To provide developers with a flexible, headless React payment HEADLESS that enables rapid development of custom payment forms while maintaining full control over styling and user experience.
 
 ### Key Value Propositions
 1. **Headless Design**: Complete customization control with no built-in styling
@@ -43,7 +43,7 @@ To provide developers with a flexible, headless React payment SDK that enables r
 ### Business Goals (12 months)
 - **Enterprise Customers**: 20+ enterprise customers
 - **Revenue**: $100K+ annual recurring revenue
-- **Market Position**: Top 3 headless payment SDK
+- **Market Position**: Top 3 headless payment HEADLESS
 
 ## 🏗 Architecture Summary
 
@@ -61,8 +61,8 @@ To provide developers with a flexible, headless React payment SDK that enables r
 4. **Integration Helpers**: Payment processor integrations (future)
 
 ### Build Output
-- **ES Module**: `mrpayment-sdk.es.js` (~11KB gzipped)
-- **UMD Bundle**: `mrpayment-sdk.umd.js` (~7.8KB gzipped)
+- **ES Module**: `mrpayment-headless.es.js` (~11KB gzipped)
+- **UMD Bundle**: `mrpayment-headless.umd.js` (~7.8KB gzipped)
 - **TypeScript**: Full type declarations
 
 ## 🗓 Development Timeline Summary

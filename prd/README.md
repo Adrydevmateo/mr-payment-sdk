@@ -1,6 +1,6 @@
 # Product Requirements Documents (PRD)
 
-This directory contains the Product Requirements Documents for the MR Payment SDK project. These documents outline the product vision, requirements, specifications, and roadmap.
+This directory contains the Product Requirements Documents for the MR Payment HEADLESS project. These documents outline the product vision, requirements, specifications, and roadmap.
 
 ## 📋 PRD Index
 
@@ -22,7 +22,7 @@ This directory contains the Product Requirements Documents for the MR Payment SD
 ## 🎯 Product Overview
 
 ### Vision Statement
-To provide developers with a flexible, headless React payment SDK that enables rapid development of custom payment forms while maintaining full control over styling and user experience.
+To provide developers with a flexible, headless React payment HEADLESS that enables rapid development of custom payment forms while maintaining full control over styling and user experience.
 
 ### Mission Statement
 Empower developers to build beautiful, accessible, and secure payment experiences without the constraints of pre-styled components.
@@ -105,8 +105,8 @@ For questions about PRDs or to contribute:
 
 - **Product Manager**: [Contact PM]
 - **Technical Lead**: [Contact Tech Lead]
-- **Documentation**: [GitHub Issues](https://github.com/your-org/mr-payment-sdk/issues)
+- **Documentation**: [GitHub Issues](https://github.com/your-org/mr-payment-headless/issues)
 
 ## 📄 License
 
-These PRDs are internal documents and are confidential to the MR Payment SDK team. 
+These PRDs are internal documents and are confidential to the MR Payment HEADLESS team. 

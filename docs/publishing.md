@@ -1,6 +1,6 @@
 # Publishing to NPM
 
-This guide explains how to publish the MR Payment SDK to NPM, including version management, build processes, and release procedures.
+This guide explains how to publish the MR Payment HEADLESS to NPM, including version management, build processes, and release procedures.
 
 ## Prerequisites
 
@@ -24,9 +24,9 @@ pnpm build
 ```
 
 This should create:
-- `dist/mrpayment-sdk.es.js`
-- `dist/mrpayment-sdk.umd.js`
-- `dist/mrpayment-sdk.d.ts`
+- `dist/mrpayment-headless.es.js`
+- `dist/mrpayment-headless.umd.js`
+- `dist/mrpayment-headless.d.ts`
 
 ### 2. Run Tests
 
@@ -54,7 +54,7 @@ pnpm lint
 
 Check that `package.json` has:
 - Correct version number
-- Proper package name (`@mrpayment/sdk`)
+- Proper package name (`@mrpayment/headless`)
 - All necessary fields (description, keywords, etc.)
 - Correct entry points
 
@@ -148,7 +148,7 @@ pnpm publish:private
 Check that the package was published successfully:
 
 ```bash
-npm view @mrpayment/sdk
+npm view @mrpayment/headless
 ```
 
 ## Publishing Scripts
@@ -253,7 +253,7 @@ If a bad version is published:
 
 1. **Immediate**: Unpublish within 72 hours:
    ```bash
-   npm unpublish @mrpayment/sdk@1.0.0
+   npm unpublish @mrpayment/headless@1.0.0
    ```
 
 2. **After 72 hours**: Publish a new patch version with fixes

@@ -1,13 +1,13 @@
-# MR Payment SDK - Complete Guide
+# MR Payment HEADLESS - Complete Guide
 
-This document provides a comprehensive overview of the MR Payment SDK and how to use it effectively.
+This document provides a comprehensive overview of the MR Payment HEADLESS and how to use it effectively.
 
 ## 🚀 Quick Start
 
 If you want to get up and running immediately:
 
-1. **Install**: `npm install @mrpayment/sdk`
-2. **Import**: `import { Payment } from '@mrpayment/sdk'`
+1. **Install**: `npm install @mrpayment/headless`
+2. **Import**: `import { Payment } from '@mrpayment/headless'`
 3. **Use**: `<Payment submit={{ action: handlePayment }} />`
 
 For detailed setup, see [Quick Start Guide](./quick-start.md).
@@ -15,14 +15,14 @@ For detailed setup, see [Quick Start Guide](./quick-start.md).
 ## 📚 Documentation Structure
 
 ### Getting Started
-- **[Installation](./installation.md)** - How to install and set up the SDK
+- **[Installation](./installation.md)** - How to install and set up the HEADLESS
 - **[Quick Start](./quick-start.md)** - Get up and running in minutes
 - **[Getting Started](./getting-started.md)** - Comprehensive setup and usage guide
-- **[Development](./development.md)** - How to run and develop the SDK locally
+- **[Development](./development.md)** - How to run and develop the HEADLESS locally
 
 ### Core Documentation
 - **[Components](./components/payment.md)** - Complete Payment component documentation
-- **[Building](./building.md)** - How to build the SDK for production
+- **[Building](./building.md)** - How to build the HEADLESS for production
 - **[Publishing](./publishing.md)** - How to publish new versions to NPM
 
 ### Reference
@@ -56,7 +56,7 @@ For detailed setup, see [Quick Start Guide](./quick-start.md).
 ### Basic Usage
 
 ```tsx
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 
 function App() {
   const handlePayment = () => {
@@ -103,7 +103,7 @@ function App() {
 
 ```tsx
 import { useState } from 'react';
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 
 function PaymentForm() {
   const [formData, setFormData] = useState({
@@ -159,8 +159,8 @@ function PaymentForm() {
 
 ```bash
 # Clone and install
-git clone https://github.com/your-org/mr-payment-sdk.git
-cd mr-payment-sdk
+git clone https://github.com/your-org/mr-payment-headless.git
+cd mr-payment-headless
 pnpm install
 
 # Start development server
@@ -190,8 +190,8 @@ pnpm publish:public
 ## 📦 Package Information
 
 ### Bundle Details
-- **ES Module**: `mrpayment-sdk.es.js` (~11KB gzipped)
-- **UMD Bundle**: `mrpayment-sdk.umd.js` (~7.8KB gzipped)
+- **ES Module**: `mrpayment-headless.es.js` (~11KB gzipped)
+- **UMD Bundle**: `mrpayment-headless.umd.js` (~7.8KB gzipped)
 - **TypeScript**: Full type definitions included
 
 ### Dependencies
@@ -245,7 +245,7 @@ pnpm publish:public
 ### Component Testing
 ```tsx
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 
 test('renders payment form', () => {
   render(<Payment />);
@@ -276,7 +276,7 @@ test('calls submit action', () => {
 - **Accessibility**: Ensure forms are accessible to all users
 
 ### Data Handling
-- **No Data Storage**: SDK doesn't store sensitive data
+- **No Data Storage**: HEADLESS doesn't store sensitive data
 - **Form Submission**: Handle data securely in your application
 - **Validation**: Implement proper client and server-side validation
 
@@ -316,9 +316,9 @@ test('calls submit action', () => {
 - **Email**: Contact the team directly
 
 ### Community
-- **GitHub**: [Repository](https://github.com/your-org/mr-payment-sdk)
-- **NPM**: [Package](https://www.npmjs.com/package/@mrpayment/sdk)
-- **Discussions**: [GitHub Discussions](https://github.com/your-org/mr-payment-sdk/discussions)
+- **GitHub**: [Repository](https://github.com/your-org/mr-payment-headless)
+- **NPM**: [Package](https://www.npmjs.com/package/@mrpayment/headless)
+- **Discussions**: [GitHub Discussions](https://github.com/your-org/mr-payment-headless/discussions)
 
 ## 📈 Roadmap
 
@@ -338,8 +338,8 @@ test('calls submit action', () => {
 
 ## 🎉 Getting Started Checklist
 
-- [ ] Install the SDK: `npm install @mrpayment/sdk`
-- [ ] Import the component: `import { Payment } from '@mrpayment/sdk'`
+- [ ] Install the HEADLESS: `npm install @mrpayment/headless`
+- [ ] Import the component: `import { Payment } from '@mrpayment/headless'`
 - [ ] Create a basic form: `<Payment submit={{ action: handlePayment }} />`
 - [ ] Add styling to match your design
 - [ ] Implement payment processing logic

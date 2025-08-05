@@ -1,6 +1,6 @@
 # Building for Production
 
-This guide explains how to build the MR Payment SDK for production deployment and distribution.
+This guide explains how to build the MR Payment HEADLESS for production deployment and distribution.
 
 ## Overview
 
@@ -33,7 +33,7 @@ Before building, ensure you have:
 
 ### Standard Build
 
-Build the SDK for production:
+Build the HEADLESS for production:
 
 ```bash
 pnpm build
@@ -67,9 +67,9 @@ After a successful build, the `dist/` directory contains:
 
 ```
 dist/
-├── mrpayment-sdk.es.js          # ES module bundle
-├── mrpayment-sdk.umd.js         # UMD bundle
-├── mrpayment-sdk.d.ts           # Main TypeScript declarations
+├── mrpayment-headless.es.js          # ES module bundle
+├── mrpayment-headless.umd.js         # UMD bundle
+├── mrpayment-headless.d.ts           # Main TypeScript declarations
 ├── payment/
 │   └── payment.d.ts             # Component-specific types
 └── types/                       # Detailed type declarations
@@ -80,23 +80,23 @@ dist/
 
 ### Bundle Details
 
-#### ES Module Bundle (`mrpayment-sdk.es.js`)
+#### ES Module Bundle (`mrpayment-headless.es.js`)
 
 - **Size**: ~11KB (gzipped: ~3.3KB)
 - **Target**: Modern bundlers (Webpack, Vite, Rollup)
 - **Features**: Tree-shaking support, ES2022 syntax
-- **Usage**: `import { Payment } from '@mrpayment/sdk'`
+- **Usage**: `import { Payment } from '@mrpayment/headless'`
 
-#### UMD Bundle (`mrpayment-sdk.umd.js`)
+#### UMD Bundle (`mrpayment-headless.umd.js`)
 
 - **Size**: ~7.8KB (gzipped: ~3KB)
 - **Target**: Browser globals, older bundlers
 - **Features**: Universal compatibility
-- **Usage**: `window.MrPaymentSDK.Payment`
+- **Usage**: `window.MrPaymentHEADLESS.Payment`
 
 #### TypeScript Declarations
 
-- **Main**: `mrpayment-sdk.d.ts`
+- **Main**: `mrpayment-headless.d.ts`
 - **Component**: `payment/payment.d.ts`
 - **Detailed**: `types/` directory with source maps
 
@@ -119,9 +119,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "mrpayment-sdk",
+      name: "mrpayment-headless",
       formats: ["es", "umd"],
-      fileName: (format) => `mrpayment-sdk.${format}.js`,
+      fileName: (format) => `mrpayment-headless.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],
@@ -192,10 +192,10 @@ The ES module bundle supports tree shaking:
 
 ```tsx
 // Only Payment component is included in the final bundle
-import { Payment } from '@mrpayment/sdk';
+import { Payment } from '@mrpayment/headless';
 
 // Unused imports are removed
-import { Payment, UnusedComponent } from '@mrpayment/sdk';
+import { Payment, UnusedComponent } from '@mrpayment/headless';
 ```
 
 ### External Dependencies
@@ -270,7 +270,7 @@ ls -la dist/*.js
 pnpm types
 
 # Test the built package
-node -e "console.log(require('./dist/mrpayment-sdk.umd.js'))"
+node -e "console.log(require('./dist/mrpayment-headless.umd.js'))"
 ```
 
 ### Bundle Analysis
@@ -349,10 +349,10 @@ pnpm build
 3. **Optimize Imports**:
    ```tsx
    // Good - tree-shakeable
-   import { Payment } from '@mrpayment/sdk';
+   import { Payment } from '@mrpayment/headless';
    
    // Avoid - imports everything
-   import * as SDK from '@mrpayment/sdk';
+   import * as HEADLESS from '@mrpayment/headless';
    ```
 
 ## Continuous Integration
