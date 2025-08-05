@@ -55,7 +55,7 @@
     "version:minor": "npm version minor",
     "version:major": "npm version major",
     "types": "tsc -p tsconfig.types.json",
-    "postbuild": "pnpm types && cp dist/types/index.d.ts dist/mrpayment-sdk.d.ts && mkdir -p dist/payment && cp dist/types/payment/payment.d.ts dist/payment/ && rm -rf dist/types && rm -f dist/App.d.ts dist/main.d.ts dist/test.d.ts dist/*.d.ts.map dist/payment/*.d.ts.map dist/vite.svg",
+    "postbuild": "pnpm types && cp dist/types/index.d.ts dist/mrpayment-sdk.d.ts && mkdir -p dist/payment && cp dist/types/payment/payment-form.d.ts dist/payment/ && rm -rf dist/types && rm -f dist/App.d.ts dist/main.d.ts dist/test.d.ts dist/*.d.ts.map dist/payment/*.d.ts.map dist/vite.svg",
     "prepublishOnly": "npm run build && npm run test"
   },
   "dependencies": {
