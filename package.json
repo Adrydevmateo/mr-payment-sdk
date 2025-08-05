@@ -1,18 +1,18 @@
 {
-  "name": "mr-payment-sdk",
+  "name": "mr-payment-headless",
   "version": "0.0.3",
   "type": "module",
-  "main": "dist/mrpayment-sdk.umd.js",
-  "module": "dist/mrpayment-sdk.es.js",
-  "types": "dist/mrpayment-sdk.d.ts",
+  "main": "dist/mrpayment-headless.umd.js",
+  "module": "dist/mrpayment-headless.es.js",
+  "types": "dist/mrpayment-headless.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/mrpayment-sdk.d.ts",
-      "import": "./dist/mrpayment-sdk.es.js",
-      "require": "./dist/mrpayment-sdk.umd.js"
+      "types": "./dist/mrpayment-headless.d.ts",
+      "import": "./dist/mrpayment-headless.es.js",
+      "require": "./dist/mrpayment-headless.umd.js"
     }
   },
   "keywords": [
@@ -32,11 +32,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Adrydevmateo/mr-payment-sdk.git"
+    "url": "git+https://github.com/Adrydevmateo/mr-payment-headless.git"
   },
-  "homepage": "https://github.com/Adrydevmateo/mr-payment-sdk#readme",
+  "homepage": "https://github.com/Adrydevmateo/mr-payment-headless#readme",
   "bugs": {
-    "url": "https://github.com/Adrydevmateo/mr-payment-sdk/issues"
+    "url": "https://github.com/Adrydevmateo/mr-payment-headless/issues"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -55,7 +55,7 @@
     "version:minor": "npm version minor",
     "version:major": "npm version major",
     "types": "tsc -p tsconfig.types.json",
-    "postbuild": "pnpm types && cp dist/types/index.d.ts dist/mrpayment-sdk.d.ts && mkdir -p dist/payment && cp dist/types/payment/payment-form.d.ts dist/payment/ && rm -rf dist/types && rm -f dist/App.d.ts dist/main.d.ts dist/test.d.ts dist/*.d.ts.map dist/payment/*.d.ts.map dist/vite.svg",
+    "postbuild": "pnpm types && cp dist/types/index.d.ts dist/mrpayment-headless.d.ts && mkdir -p dist/payment && cp dist/types/payment/payment-form.d.ts dist/payment/ && rm -rf dist/types && rm -f dist/App.d.ts dist/main.d.ts dist/test.d.ts dist/*.d.ts.map dist/payment/*.d.ts.map dist/vite.svg",
     "prepublishOnly": "npm run build && npm run test"
   },
   "dependencies": {

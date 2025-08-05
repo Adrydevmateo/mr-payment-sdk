@@ -15,9 +15,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "mrpayment-sdk",
+      name: "mrpayment-headless",
       formats: ["es", "umd"],
-      fileName: (format) => `mrpayment-sdk.${format}.js`,
+      fileName: (format) => `mrpayment-headless.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],

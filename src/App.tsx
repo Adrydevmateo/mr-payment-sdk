@@ -42,9 +42,9 @@ function App() {
 		return (
 			<div className="min-h-screen bg-gray-50 py-8">
 				<div className="max-w-4xl mx-auto px-4">
-					<h1 className="text-4xl font-bold text-center text-gray-900 mb-8">
-						MR Payment SDK
-					</h1>
+									<h1 className="text-4xl font-bold text-center text-gray-900 mb-8">
+					MR Payment Headless
+				</h1>
 					<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
 						<strong className="font-bold">Configuration Error:</strong>
 						<span className="block sm:inline"> Application Key, Session Token, and Merchant ID are required for payment processing.</span>
@@ -58,7 +58,7 @@ function App() {
 		<div className="min-h-screen bg-gray-50 py-8">
 			<div className="max-w-4xl mx-auto px-4">
 				<h1 className="text-4xl font-bold text-center text-gray-900 mb-8">
-					MR Payment SDK
+					MR Payment Headless
 				</h1>
 				
 				<div className="bg-white rounded-lg shadow-lg p-6">

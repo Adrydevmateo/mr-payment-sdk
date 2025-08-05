@@ -1,15 +1,15 @@
-# MR Payment SDK
+# MR Payment Headless
 
 A headless React payment SDK built with TypeScript and Vite. This SDK provides flexible, unstyled payment components that you can customize with your own styling and integrate into any React application. Now with **BlockChanger API integration** for real payment processing!
 
 ## Installation
 
 ```bash
-npm install mr-payment-sdk
+npm install mr-payment-headless
 # or
-yarn add mr-payment-sdk
+yarn add mr-payment-headless
 # or
-pnpm add mr-payment-sdk
+pnpm add mr-payment-headless
 ```
 
 ## Peer Dependencies
@@ -25,7 +25,7 @@ npm install react react-dom
 ### Basic Payment Form
 
 ```tsx
-import { Payment } from 'mr-payment-sdk';
+import { Payment } from 'mr-payment-headless';
 
 function App() {
   const handlePaymentSubmit = () => {
@@ -50,7 +50,7 @@ function App() {
 The form manages its own state internally:
 
 ```tsx
-import { PaymentForm } from 'mr-payment-sdk';
+import { PaymentForm } from 'mr-payment-headless';
 
 function App() {
   const paymentConfig = {
@@ -92,7 +92,7 @@ function App() {
 You can control the form values externally:
 
 ```tsx
-import { PaymentForm } from 'mr-payment-sdk';
+import { PaymentForm } from 'mr-payment-headless';
 import { useState } from 'react';
 
 function App() {
@@ -223,7 +223,7 @@ interface PaymentResponse {
 Process a payment through the BlockChanger API.
 
 ```typescript
-import { createPayment, PaymentRequest, PaymentConfig } from 'mr-payment-sdk';
+import { createPayment, PaymentRequest, PaymentConfig } from 'mr-payment-headless';
 
 const paymentData: PaymentRequest = {
   merchant_identifier: "mid-A144-U1697-wWxxob29NxcEgdXUFGbhQMtjwkDgPK",
@@ -263,7 +263,7 @@ const response = await createPayment(paymentData, config);
 Validate payment data before submission.
 
 ```typescript
-import { validatePaymentData } from 'mr-payment-sdk';
+import { validatePaymentData } from 'mr-payment-headless';
 
 const validation = validatePaymentData(paymentData);
 if (!validation.isValid) {
@@ -276,7 +276,7 @@ if (!validation.isValid) {
 Get the client's IP address for payment processing.
 
 ```typescript
-import { getClientIP } from 'mr-payment-sdk';
+import { getClientIP } from 'mr-payment-headless';
 
 const clientIP = await getClientIP();
 ```
