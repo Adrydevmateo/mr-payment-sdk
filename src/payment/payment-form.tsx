@@ -52,6 +52,15 @@ export interface PaymentFormProps extends Omit<React.HTMLAttributes<HTMLFormElem
   descriptor?: string;
   param?: string;
   paymentStatus?: string;
+  
+  // Controlled mode props (optional)
+  controlled?: {
+    // Form data values (if provided, component becomes controlled)
+    values?: Partial<PaymentRequest>;
+    // Change handlers for each field
+    onChange?: (field: keyof PaymentRequest, value: string) => void;
+    onFormDataChange?: (formData: Partial<PaymentRequest>) => void;
+  };
 }
 
 interface FieldConfig {
@@ -71,7 +80,12 @@ const PaymentForm = React.forwardRef<HTMLFormElement, PaymentFormProps>(
     const formId = useId();
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
-    const [formData, setFormData] = useState<Partial<PaymentRequest>>({
+    
+    // Determine if component is controlled or uncontrolled
+    const isControlled = props.controlled?.values !== undefined;
+    
+    // Initialize form data
+    const initialFormData: Partial<PaymentRequest> = {
       merchant_identifier: props.merchantIdentifier,
       currency: props.currency || 'USD',
       redirect_url: props.redirectUrl,
@@ -80,17 +94,31 @@ const PaymentForm = React.forwardRef<HTMLFormElement, PaymentFormProps>(
       descriptor: props.descriptor || 'Payment',
       param: props.param,
       payment_status: props.paymentStatus || 'approved',
-    });
+    };
+
+    const [internalFormData, setInternalFormData] = useState<Partial<PaymentRequest>>(initialFormData);
+    
+    // Use controlled values if provided, otherwise use internal state
+    const formData = isControlled ? { ...initialFormData, ...props.controlled?.values } : internalFormData;
 
     const handleInputChange = useCallback((field: keyof PaymentRequest, value: string) => {
       const newFormData = { ...formData, [field]: value };
-      setFormData(newFormData);
-      props.onFormDataChange?.(newFormData);
+      
+      if (isControlled) {
+        // In controlled mode, call the onChange handler
+        props.controlled?.onChange?.(field, value);
+        props.controlled?.onFormDataChange?.(newFormData);
+      } else {
+        // In uncontrolled mode, update internal state
+        setInternalFormData(newFormData);
+        props.onFormDataChange?.(newFormData);
+      }
+      
       // Clear errors when user starts typing
       if (errors.length > 0) {
         setErrors([]);
       }
-    }, [errors, formData, props.onFormDataChange]);
+    }, [errors, formData, isControlled, props.controlled, props.onFormDataChange]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();

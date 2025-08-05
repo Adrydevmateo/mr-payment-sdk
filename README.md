@@ -45,6 +45,10 @@ function App() {
 
 ### BlockChanger Payment Integration
 
+#### Uncontrolled Mode (Default)
+
+The form manages its own state internally:
+
 ```tsx
 import { PaymentForm } from 'mr-payment-sdk';
 
@@ -73,6 +77,64 @@ function App() {
       currency="USD"
       onSuccess={handleSuccess}
       onError={handleError}
+      onFormDataChange={(formData) => console.log('Form data changed:', formData)}
+      submit={{
+        text: "Pay $10.00",
+        styles: "bg-blue-600 text-white px-4 py-2 rounded"
+      }}
+    />
+  );
+}
+```
+
+#### Controlled Mode (Optional)
+
+You can control the form values externally:
+
+```tsx
+import { PaymentForm } from 'mr-payment-sdk';
+import { useState } from 'react';
+
+function App() {
+  const [formData, setFormData] = useState({
+    first_name: 'John',
+    last_name: 'Doe',
+    email: 'john@example.com'
+  });
+
+  const paymentConfig = {
+    sessionToken: 'your_session_token',
+    applicationKey: 'your_application_key',
+    baseUrl: 'https://dev1.blockchanger.io'
+  };
+
+  const handleFieldChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSuccess = (response) => {
+    console.log('Payment successful:', response);
+  };
+
+  const handleError = (error) => {
+    console.error('Payment failed:', error);
+  };
+
+  return (
+    <PaymentForm
+      config={paymentConfig}
+      merchantIdentifier="your_merchant_id"
+      redirectUrl="https://your-site.com/success"
+      postbackUrl="https://your-site.com/webhook"
+      amount="10.00"
+      currency="USD"
+      onSuccess={handleSuccess}
+      onError={handleError}
+      controlled={{
+        values: formData,
+        onChange: handleFieldChange,
+        onFormDataChange: (formData) => console.log('Controlled form data:', formData)
+      }}
       submit={{
         text: "Pay $10.00",
         styles: "bg-blue-600 text-white px-4 py-2 rounded"
@@ -99,7 +161,7 @@ A simple headless payment form component with customizable fields and styling.
 
 ### PaymentForm (BlockChanger Integration)
 
-A comprehensive payment form component with full BlockChanger API integration, including all required fields for payment processing.
+A comprehensive payment form component with full BlockChanger API integration, including all required fields for payment processing. Supports both controlled and uncontrolled modes.
 
 #### Props
 
@@ -113,11 +175,23 @@ A comprehensive payment form component with full BlockChanger API integration, i
 | `currency` | `string` | ❌ | Payment currency (defaults to USD) |
 | `description` | `string` | ❌ | Payment description |
 | `descriptor` | `string` | ❌ | Payment descriptor |
+| `param` | `string` | ❌ | Pass-through parameter |
+| `paymentStatus` | `string` | ❌ | Payment status (default: 'approved') |
 | `onSuccess` | `(response: PaymentResponse) => void` | ❌ | Success callback |
 | `onError` | `(error: string) => void` | ❌ | Error callback |
 | `onLoading` | `(loading: boolean) => void` | ❌ | Loading state callback |
+| `onFormDataChange` | `(formData: Partial<PaymentRequest>) => void` | ❌ | Form data change callback (uncontrolled mode) |
 | `fields` | `PaymentFormFields` | ❌ | Field customization |
 | `submit` | `SubmitConfig` | ❌ | Submit button configuration |
+| `controlled` | `ControlledConfig` | ❌ | Controlled mode configuration |
+
+#### Controlled Mode Configuration
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `controlled.values` | `Partial<PaymentRequest>` | Form field values (makes component controlled) |
+| `controlled.onChange` | `(field: keyof PaymentRequest, value: string) => void` | Field change handler |
+| `controlled.onFormDataChange` | `(formData: Partial<PaymentRequest>) => void` | Form data change callback (controlled mode) |
 
 #### PaymentConfig
 
