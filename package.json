@@ -1,5 +1,5 @@
 {
-  "name": "@mrpayment/sdk",
+  "name": "mr-payment-sdk",
   "version": "0.0.1",
   "type": "module",
   "main": "dist/mrpayment-sdk.umd.js",
