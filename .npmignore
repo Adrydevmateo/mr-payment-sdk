@@ -1,0 +1,52 @@
+# Source files (not needed in published package)
+src/
+stories/
+
+# Development files
+.storybook/
+*.config.js
+*.config.ts
+tsconfig*.json
+vite.config.ts
+vitest.shims.d.ts
+
+# Development dependencies
+node_modules/
+pnpm-lock.yaml
+pnpm-workspace.yaml
+
+# Build artifacts (except dist)
+*.log
+*.tsbuildinfo
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Git files
+.git/
+.gitignore
+
+# Test files
+coverage/
+*.test.js
+*.test.ts
+*.test.tsx
+*.spec.js
+*.spec.ts
+*.spec.tsx
+
+# Development server files
+index.html
+public/
+
+# Documentation (except README)
+docs/
+*.md
+!README.md 
